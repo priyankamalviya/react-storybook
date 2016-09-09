@@ -1,5 +1,29 @@
 ## Changelog
 
+### v2.13.0
+9-September-2016
+
+* Fix [#443](https://github.com/kadirahq/react-storybook/issues/443) where the static version of Storybook doesn't like Safari.
+* Update postcss-loader to 0.13.0.
+
+### v2.12.1
+8-September-2016
+
+* Parse static directory provided by env as a list. [PR436](https://github.com/kadirahq/react-storybook/pull/436)
+
+### v2.12.0
+8-September-2016
+
+* Do not include addon register file on preview. [PR426](https://github.com/kadirahq/react-storybook/pull/426)
+* Update css-loader to version 0.25.0. [PR427](https://github.com/kadirahq/react-storybook/pull/427)
+* Get the head.html values for every page request. [PR432](https://github.com/kadirahq/react-storybook/pull/432)
+
+### v2.11.0
+4-September-2016
+
+* Remove babel-polyfill since we don't use it.
+* Update versions with the help from greenkeeper. [PR421](https://github.com/kadirahq/react-storybook/pull/421)
+
 ### v2.10.0
 3-September-2016
 

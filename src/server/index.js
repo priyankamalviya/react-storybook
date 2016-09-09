@@ -1,11 +1,11 @@
 #!/usr/bin/env node
 
+import datastore from '@kadira/storybook-database-local/dist/server/middleware';
 import express from 'express';
 import program from 'commander';
 import path from 'path';
 import fs from 'fs';
 import storybook from './middleware';
-import datastore from '@kadira/storybook-database-local/dist/server/middleware';
 import packageJson from '../../package.json';
 import { parseList, getEnvConfig } from './utils';
 import { track, dontTrack } from './track_usage';
@@ -16,7 +16,7 @@ program
   .version(packageJson.version)
   .option('-p, --port [number]', 'Port to run Storybook (Required)', parseInt)
   .option('-h, --host [string]', 'Host to run Storybook')
-  .option('-s, --static-dir <dir-names>', 'Directory where to load static files from', parseList)
+  .option('-s, --static-dir <dir-names>', 'Directory where to load static files from')
   .option('-c, --config-dir [dir-name]', 'Directory where to load Storybook configurations from')
   .option('-d, --db-path [db-file]', 'File where to store addon database JSON file')
   .option('--enable-db', 'Enable the (experimental) addon database service on dev-server')
@@ -53,6 +53,7 @@ if (program.host) {
 const app = express();
 
 if (program.staticDir) {
+  program.staticDir = parseList(program.staticDir);
   program.staticDir.forEach(dir => {
     const staticPath = path.resolve(dir);
     if (!fs.existsSync(staticPath)) {
